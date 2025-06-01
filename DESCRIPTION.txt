@@ -1,0 +1,11 @@
+Package: baseline
+Type: Package
+Title: Baseline Theme
+Version 0.1.0
+Authors@R:
+    person("Lukas", "Nesheim", role = c("aut", "cre"))
+Description: A theme and style guide to make data beautiful for The Baseline.
+Encoding: UTF-8
+LazyData: true
+Imports:
+    jsonlite

@@ -1,0 +1,79 @@
+{
+    "logo": {
+        "color": "#333333",
+        "wratio": 0.25,
+        "hratio": 0.01
+    },
+    "table": {
+        "font": {
+            "family": "Montserrat",
+            "size": {
+                "title": 16,
+                "subtitle": 12,
+                "label": 10,
+                "body": 8,
+                "credit": 6
+            },
+            "weight": {
+                "title": 600,
+                "subtitle": 600,
+                "label": 600,
+                "body": 400,
+                "credit": 300
+            },
+            "color": {
+                "title": "#333333",
+                "subtitle": "#595959",
+                "label": "#333333",
+                "body": "#333333",
+                "credit": "#595959"
+            },
+            "alpha": {
+                "title": 1.0,
+                "subtitle": 1.0,
+                "label": 1.0,
+                "body": 1.0,
+                "credit": 1.0 
+            }
+        }
+    },
+    "chart": {
+        "font": {
+            "family": "Montserrat",
+            "size": {
+                "title": 16,
+                "subtitle": 12,
+                "label": 10,
+                "body": 8,
+                "credit": 6
+            },
+            "weight": {
+                "title": 600,
+                "subtitle": 600,
+                "label": 600,
+                "body": 400,
+                "credit": 300
+            },
+            "color": {
+                "title": "#333333",
+                "subtitle": "#595959",
+                "label": "#333333",
+                "body": "#333333",
+                "credit": "#595959"
+            },
+            "alpha": {
+                "title": 1.0,
+                "subtitle": 1.0,
+                "label": 1.0,
+                "body": 1.0,
+                "credit": 1.0 
+            }
+        },
+        "grid": {
+            "color": "#B3B3B3",
+            "linestyle": "solid",
+            "linewidth": 0.5,
+            "alpha": 0.2
+        }
+    }
+}
