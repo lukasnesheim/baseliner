@@ -1,0 +1,23 @@
+Package: baseliner
+Type: Package
+Title: Baseline Theme
+Version: 0.1.0
+Authors@R:
+    person("Lukas", "Nesheim", email = "lukenesh@me.com", role = c("aut", "cre"))
+Description: A theme and style guide to make data beautiful for the Baseline.
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    cowplot,
+    ggplot2,
+    gt,
+    here,
+    jsonlite,
+    magick,
+    magrittr,
+    scales,
+    showtext,
+    sysfonts
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
