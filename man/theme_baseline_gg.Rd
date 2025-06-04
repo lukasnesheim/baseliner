@@ -2,7 +2,7 @@
 % Please edit documentation in R/baseline.R
 \name{theme_baseline_gg}
 \alias{theme_baseline_gg}
-\title{Baseline Theme (ggplot2)}
+\title{Baseline Plot Theme}
 \usage{
 theme_baseline_gg(scale = 1)
 }
@@ -10,8 +10,8 @@ theme_baseline_gg(scale = 1)
 \item{scale}{Numeric. Scale factor relative to a base plot of 6x6 inches.}
 }
 \value{
-A ggplot2 theme object that can be added to a ggplot.
+A \code{ggplot2} theme object that can be added to a ggplot.
 }
 \description{
-Styles the ggplot2 theme for the Baseline.
+Apply the Baseline theme to a \code{ggplot2} plot.
 }

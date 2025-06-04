@@ -1,20 +1,23 @@
+#' @importFrom jsonlite read_json
 style <- jsonlite::read_json("inst/style.json")
 color <- jsonlite::read_json("inst/color.json")
 
 # define the pipe from magrittr
 "%>%" <- magrittr::"%>%"
 
-#' Add Logo
+#' Add `ggplot2` Logo
 #'
-#' Adds the Baseline logo to a ggplot2 plot.
+#' Adds the Baseline logo to a `ggplot2` plot.
 #'
-#' @param plot A ggplot2 plot (of class 'gg' and 'ggplot').
-#' @param color Character. A color hex.
+#' @param plot A `ggplot2` plot (of class 'gg' and 'ggplot').
+#' @param color Character. A color hex defaulted to `#333333`.
 #'
-#' @return A ggplot2 plot object with the logo added.
-#' @export
+#' @return A `ggplot2` plot object with the logo added.
+#'
 #' @importFrom cowplot ggdraw draw_image
 #' @importFrom magick image_blank
+#'
+#' @export
 add_logo_gg <- function(plot, color = style$logo$color) {
   cowplot::ggdraw(plot) +
     cowplot::draw_image(
@@ -32,6 +35,30 @@ add_logo_gg <- function(plot, color = style$logo$color) {
       width = 0.25,
       height = 0.02
     )
+}
+
+#' Add `gt` Logo
+#'
+#' Adds the Baseline logo to a `gt` table.
+#'
+#' @param table A magick_image.
+#' @param width Numeric. A width value in pixels.
+#' @param height Numeric. A height value in pixels.
+#' @param color Character. A color hex defaulted to `#333333`.
+#'
+#' @importFrom magick image_blank image_composite
+#'
+#' @export
+add_logo_gt <- function(table, width = 1000, height = 1000, color = style$logo$color) {
+  magick::image_composite(
+    table,
+    magick::image_blank(
+      width = width * 0.25,
+      height = height * 0.02,
+      color = color
+    ),
+    gravity = "northwest"
+  )
 }
 
 #' Register Montserrat
@@ -89,19 +116,21 @@ register_montserrat <- function() {
   invisible(TRUE)
 }
 
-#' Baseline Theme (ggplot2)
+#' Baseline Plot Theme
 #'
-#' Styles the ggplot2 theme for the Baseline.
+#' Apply the Baseline theme to a `ggplot2` plot.
 #'
 #' @param scale Numeric. Scale factor relative to a base plot of 6x6 inches.
 #'
-#' @return A ggplot2 theme object that can be added to a ggplot.
-#' @export
-#' @importFrom ggplot2 theme_void theme element_rect element_text element_blank element_line margin
+#' @returns A `ggplot2` theme object that can be added to a ggplot.
+#'
+#' @import ggplot2
 #' @importFrom scales alpha
+#'
+#' @export
 theme_baseline_gg <- function(scale = 1) {
-  if (!is.numeric(scale) || scale <= 0)
-    stop("`scale` must be a positive number.")
+
+  stopifnot(`'scale' must be a positive number.` = is.numeric(scale) && scale > 0)
 
   ggplot2::theme_void() + ggplot2::theme(
     plot.background = ggplot2::element_rect(
@@ -173,4 +202,153 @@ theme_baseline_gg <- function(scale = 1) {
       color = style$chart$font$color$body
     )
   )
+}
+
+#' Baseline Table Theme
+#'
+#' Apply the Baseline theme to a `gt` table.
+#'
+#' @param table An existing gt table object of class `gt_tbl`.
+#' @param ... Additional optional arguments passed to `gt::tab_options()` to override table styling.
+#'
+#' @returns Returns a styled `gt` table.
+#'
+#' @import gt
+#' @importFrom magrittr %>%
+#'
+#' @export
+theme_baseline_gt <- function(table, ...) {
+
+  stopifnot(`'table' must be a 'gt_tbl'.` = "gt_tbl" %in% class(table))
+
+  montserrat <- gt::google_font("Montserrat")
+  table_id <- table[["_options"]]$value[table[["_options"]]$parameter == "table_id"][[1]]
+
+  if (is.na(table_id)) {
+    table_id <- gt::random_id()
+    table[["_options"]][["value"]][[which("table_id" %in% table[["_options"]][["parameter"]])[[1]]]] <- table_id
+  }
+
+  table %>% # nolint
+    # title
+    gt::tab_style(
+      locations = gt::cells_title(groups = "title"),
+      style = gt::cell_text(
+        color = style$table$font$color$title,
+        font = montserrat,
+        size = gt::px(style$table$font$size$title),
+        weight = style$table$font$weight$title
+      )
+    ) %>%
+    # subtitle
+    gt::tab_style(
+      locations = gt::cells_title(groups = "subtitle"),
+      style = gt::cell_text(
+        color = style$table$font$color$subtitle,
+        font = montserrat,
+        size = gt::px(style$table$font$size$subtitle),
+        weight = style$table$font$weight$subtitle
+      )
+    ) %>%
+    # spanner
+    gt::tab_style(
+      locations = gt::cells_column_spanners(),
+      style = gt::cell_text(
+        color = style$table$font$color$body,
+        font = montserrat,
+        size = gt::px(style$table$font$size$label),
+        weight = style$table$font$weight$label
+      )
+    ) %>%
+    # column label
+    gt::tab_style(
+      locations = gt::cells_column_labels(),
+      style = list(
+        gt::cell_text(
+          color = style$table$font$color$body,
+          font = montserrat,
+          size = gt::px(style$table$font$size$body),
+          weight = style$table$font$weight$label
+        ),
+        gt::cell_fill(
+          color = color$background
+        )
+      )
+    ) %>%
+    # row group
+    gt::tab_style(
+      locations = gt::cells_row_groups(),
+      style = list(
+        gt::cell_text(
+          color = style$table$font$color$body,
+          font = montserrat,
+          size = gt::px(style$table$font$size$body),
+          weight = style$table$font$weight$label
+        ),
+        gt::cell_fill(
+          color = color$background
+        )
+      )
+    ) %>%
+    # row body
+    gt::tab_style(
+      locations = gt::cells_body(),
+      style = gt::cell_text(
+        color = style$table$font$color$body,
+        font = montserrat,
+        size = gt::px(style$table$font$size$body),
+        weight = style$table$font$weight$body
+      )
+    ) %>%
+    # source note
+    gt::tab_style(
+      locations = gt::cells_source_notes(),
+      style = gt::cell_text(
+        color = style$table$font$color$credit,
+        font = montserrat,
+        size = gt::px(style$table$font$size$credit),
+        weight = style$table$font$weight$body
+      )
+    ) %>%
+    # footnote
+    gt::tab_style(
+      locations = gt::cells_footnotes(),
+      style = gt::cell_text(
+        color = style$table$font$color$credit,
+        font = montserrat,
+        size = gt::px(style$table$font$size$credit),
+        weight = style$table$font$weight$body
+      )
+    ) %>%
+    # table options
+    gt::tab_options(
+      table.background.color = color$background,
+      table.border.bottom.style = "none",
+      table.border.top.style = "none",
+      table_body.hlines.color = "transparent",
+      table_body.border.top.style = "none",
+      table_body.border.bottom.color = "white",
+      heading.align = "left",
+      heading.border.bottom.style = "none",
+      column_labels.border.top.color = color$london[[3]],
+      column_labels.border.top.width = gt::px(1),
+      column_labels.border.bottom.style = "none",
+      row_group.border.top.style = "none",
+      row_group.border.top.color = color$london[[3]],
+      row_group.border.bottom.style = "solid",
+      row_group.border.bottom.color = color$london[[3]],
+      row_group.border.bottom.width = gt::px(1),
+      row_group.padding = gt::px(1.5),
+      data_row.padding = 1,
+      source_notes.border.lr.style = "none",
+      ...
+    ) %>%
+    gt::opt_row_striping() %>%
+    gt::opt_css(c(
+      paste0("#", table_id, " tbody tr:last-child {border-bottom: 2px solid #333333;}"),
+      paste0("#", table_id, " .gt_col_heading {padding-bottom: 2px; padding-top: 2px; text-align: center}"),
+      paste0("#", table_id, " .gt_subtitle {padding-top: 0px !important; padding-bottom: 4px !important;}"),
+      paste0("#", table_id, " .gt_heading {padding-bottom: 0px; padding-top: 6px;}"),
+      paste0("#", table_id, " .gt_column_spanner {text-decoration: underline;}")
+    ))
 }

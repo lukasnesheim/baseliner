@@ -2,18 +2,18 @@
 % Please edit documentation in R/baseline.R
 \name{add_logo_gg}
 \alias{add_logo_gg}
-\title{Add Logo}
+\title{Add \code{ggplot2} Logo}
 \usage{
 add_logo_gg(plot, color = style$logo$color)
 }
 \arguments{
-\item{plot}{A ggplot2 plot (of class 'gg' and 'ggplot').}
+\item{plot}{A \code{ggplot2} plot (of class 'gg' and 'ggplot').}
 
-\item{color}{Character. A color hex.}
+\item{color}{Character. A color hex defaulted to \verb{#333333}.}
 }
 \value{
-A ggplot2 plot object with the logo added.
+A \code{ggplot2} plot object with the logo added.
 }
 \description{
-Adds the Baseline logo to a ggplot2 plot.
+Adds the Baseline logo to a \code{ggplot2} plot.
 }

@@ -10,30 +10,33 @@
         "#F2F2F2",
         "#FFFFFF"
     ],
-    "denver": [
-        "#0A3866",
-        "#31628D",
-        "#588CB3",
-        "#7EB6D9",
-        "#A4E0FF"
+    "stmalo": [
+        "#062647",
+        "#0C5399",
+        "#1380EC",
+        "#66ACF3",
+        "#B8D9F9"
     ],
-    "golden": [
-        "#990F3D",
-        "#B33A62",
-        "#CC6487",
-        "#E68EAC",
-        "#FFB8D1"
+    "vienna": [
+        "#760A1C",
+        "#C8102F",
+        "#F0425F",
+        "#F47D91",
+        "#F9B8C3"
     ],
-    "berlin": [
-        "#006F6A",
-        "#3F8E8A",
-        "#75A8A3",
-        "#A0C8C4",
-        "#C9E4E1"
+    "dublin": [
+        "#0F3D1F",
+        "#248F47",
+        "#47D175",
+        "#99E6B3",
+        "#C2F0D1"
     ],
-    "dodger": "#1E90FF",
-    "azure": "#9BDDFF",
-    "folly": "#FF3E5B",
-    "amaranth": "#FF9BBD",
-    "robin": "#17D4E6"
+    "nazare": [
+        "#FF3902",
+        "#FF8007",
+        "#FFB404",
+        "#05BADD",
+        "#2B4871"
+    ],
+    "dodger": "#1E90FF"
 }
