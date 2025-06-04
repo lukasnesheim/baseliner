@@ -1,41 +1,39 @@
 {
-    "color": {
-        "background": "#F9F6EF",
-        "london": [
-            "#0D0D0D",
-            "#1A1A1A",
-            "#333333",
-            "#595959",
-            "#B3B3B3",
-            "#D9D9D9",
-            "#F2F2F2",
-            "#FFFFFF"
-        ],
-        "denver": [
-            "#0A3866",
-            "#31628D",
-            "#588CB3",
-            "#7EB6D9",
-            "#A4E0FF"
-        ],
-        "golden": [
-            "#990F3D",
-            "#B33A62",
-            "#CC6487",
-            "#E68EAC",
-            "#FFB8D1"
-        ],
-        "berlin": [
-            "#006F6A",
-            "#3F8E8A",
-            "#75A8A3",
-            "#A0C8C4",
-            "#C9E4E1"
-        ],
-        "dodger": "#1E90FF",
-        "azure": "#9BDDFF",
-        "folly": "#FF3E5B",
-        "amaranth": "#FF9BBD",
-        "robin": "#17D4E6"
-    }
+    "background": "#F9F6EF",
+    "london": [
+        "#0D0D0D",
+        "#1A1A1A",
+        "#333333",
+        "#595959",
+        "#B3B3B3",
+        "#D9D9D9",
+        "#F2F2F2",
+        "#FFFFFF"
+    ],
+    "denver": [
+        "#0A3866",
+        "#31628D",
+        "#588CB3",
+        "#7EB6D9",
+        "#A4E0FF"
+    ],
+    "golden": [
+        "#990F3D",
+        "#B33A62",
+        "#CC6487",
+        "#E68EAC",
+        "#FFB8D1"
+    ],
+    "berlin": [
+        "#006F6A",
+        "#3F8E8A",
+        "#75A8A3",
+        "#A0C8C4",
+        "#C9E4E1"
+    ],
+    "dodger": "#1E90FF",
+    "azure": "#9BDDFF",
+    "folly": "#FF3E5B",
+    "amaranth": "#FF9BBD",
+    "robin": "#17D4E6"
 }

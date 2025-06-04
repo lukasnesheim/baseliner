@@ -1,11 +1,20 @@
-Package: baseline
+Package: baseliner
 Type: Package
 Title: Baseline Theme
-Version 0.1.0
+Version: 0.1.0
 Authors@R:
     person("Lukas", "Nesheim", role = c("aut", "cre"))
 Description: A theme and style guide to make data beautiful for The Baseline.
 Encoding: UTF-8
 LazyData: true
 Imports:
-    jsonlite
+    cowplot,
+    ggplot2 (>= 3.3.0),
+    here,
+    jsonlite,
+    magick,
+    magrittr,
+    scales,
+    showtext (>= 0.9.0),
+    sysfonts
+RoxygenNote: 7.3.2
