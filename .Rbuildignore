@@ -4,3 +4,4 @@
 ^\.gitignore$
 ^\.lintr$
 ^README\.md$
+^.*\.png$
