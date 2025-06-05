@@ -1,7 +1,7 @@
 # baseliner
 
 ## Description
-The `baseliner` package defines the styles and colors for the Baseline brand and is used to apply this as a theme to `ggplot2` plots and `gt` tables. The themes provide consistent styling for figures across a wide variety of domains, including (but not limited to) economics, policy, and sports analytics. Thanks to Andrew Weatherman, author of [Buckets and Bytes]("https://www.bucketsandbytes.com") and the `gtUtils` package, for the table theme inspiration in particular.
+The `baseliner` package defines the styles and colors for the Baseline brand and is used to apply this as a theme to `ggplot2` plots and `gt` tables. The themes provide consistent styling for figures across a wide variety of domains, including (but not limited to) economics, policy, and sports analytics. Thanks to Andrew Weatherman, author of the `gtUtils` package, for the table theme inspiration in particular.
 
 ## Installation
 Installation requires the `remotes` package and a personal access token (PAT).
@@ -57,7 +57,7 @@ plot <- ggplot(
   ) +
   theme_baseline_gg()
 
-  plot <- add_logo_gg(plot)
+plot <- add_logo_gg(plot)
 ```
 
 <img src="test_plot.png" width="600" height="600">
