@@ -12,7 +12,7 @@ theme_baseline_gt(table, ...)
 \item{...}{Additional optional arguments passed to \code{gt::tab_options()} to override table styling.}
 }
 \value{
-Returns a styled \code{gt} table.
+A styled \code{gt} table.
 }
 \description{
 Apply the Baseline theme to a \code{gt} table.

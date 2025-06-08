@@ -2,6 +2,9 @@
 
 export(add_logo_gg)
 export(add_logo_gt)
+export(baseline_plot)
+export(get_color)
+export(get_style)
 export(theme_baseline_gg)
 export(theme_baseline_gt)
 import(ggplot2)

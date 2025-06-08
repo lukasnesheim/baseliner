@@ -9,7 +9,7 @@ color <- jsonlite::read_json("inst/color.json")
 #'
 #' Adds the Baseline logo to a `ggplot2` plot.
 #'
-#' @param plot A `ggplot2` plot (of class 'gg' and 'ggplot').
+#' @param plot A `ggplot2` plot object.
 #' @param color Character. A color hex defaulted to `#333333`.
 #'
 #' @return A `ggplot2` plot object with the logo added.
@@ -41,7 +41,7 @@ add_logo_gg <- function(plot, color = style$logo$color) {
 #'
 #' Adds the Baseline logo to a `gt` table.
 #'
-#' @param table A magick_image.
+#' @param table A `magick_image`.
 #' @param width Numeric. A width value in pixels.
 #' @param height Numeric. A height value in pixels.
 #' @param color Character. A color hex defaulted to `#333333`.
@@ -61,9 +61,54 @@ add_logo_gt <- function(table, width = 1000, height = 1000, color = style$logo$c
   )
 }
 
+#' Baseline Plot
+#'
+#' Applies the Baseline theme and adds the Baseline logo to a `ggplot2` plot.
+#' This is a convenience wrapper which applies the theme using \code{\link{theme_baseline_gg}}
+#' to a plot and then adds the logo to a plot using \code{\link{add_logo_gg}}.
+#' Use the individual functions for more manual control and styling overrides.
+#'
+#' @param plot A ggplot2 plot object.
+#'
+#' @return A ggplot2 plot object with the Baseline theme and logo.
+#'
+#' @export
+baseline_plot <- function(plot) {
+  add_logo_gg(plot + theme_baseline_gg())
+}
+
+#' Get Baseline Style
+#'
+#' Reads and returns the style configuration JSON as a list.
+#'
+#' @return A named, nested list of style settings.
+#'
+#' @importFrom jsonlite read_json
+#'
+#' @export
+get_style <- function() {
+  style_path <- system.file("style.json", package = "baseliner")
+  jsonlite::read_json(style_path)
+}
+
+#' Get Baseline Color
+#'
+#' Reads and returns the color configuration JSON as a list.
+#'
+#' @return A named, nested list of color settings.
+#'
+#' @importFrom jsonlite read_json
+#'
+#' @export
+get_color <- function() {
+  color_path <- system.file("color.json", package = "baseliner")
+  jsonlite::read_json(color_path)
+}
+
 #' Register Montserrat
 #'
 #' Registers the Montserrat font for chart and table themes.
+#'
 #' @importFrom here here
 #' @importFrom sysfonts font_add font_families
 register_montserrat <- function() {
@@ -122,7 +167,7 @@ register_montserrat <- function() {
 #'
 #' @param scale Numeric. Scale factor relative to a base plot of 6x6 inches.
 #'
-#' @returns A `ggplot2` theme object that can be added to a ggplot.
+#' @return A `ggplot2` theme object that can be added to a ggplot.
 #'
 #' @import ggplot2
 #' @importFrom scales alpha
@@ -139,19 +184,19 @@ theme_baseline_gg <- function(scale = 1) {
       linewidth = 0
     ),
     plot.title = ggplot2::element_text(
-      family = "montserrat_semibold",
+      family = style$chart$font$family$title,
       size = scale * style$chart$font$size$title,
       color = style$chart$font$color$title,
       margin = ggplot2::margin(b = scale * 5)
     ),
     plot.subtitle = ggplot2::element_text(
-      family = "montserrat_semibold",
+      family = style$chart$font$family$subtitle,
       size = scale * style$chart$font$size$subtitle,
       color = style$chart$font$color$subtitle,
       margin = ggplot2::margin(b = scale * 10)
     ),
     plot.caption = ggplot2::element_text(
-      family = "montserrat_regular",
+      family = style$chart$font$family$credit,
       size = scale * style$chart$font$size$credit,
       color = style$chart$font$color$credit,
       hjust = 0.02,
@@ -172,7 +217,7 @@ theme_baseline_gg <- function(scale = 1) {
     ),
     panel.grid.minor = ggplot2::element_blank(),
     axis.title = ggplot2::element_text(
-      family = "montserrat_semibold",
+      family = style$chart$font$family$label,
       size = scale * style$chart$font$size$label,
       color = style$chart$font$color$label
     ),
@@ -184,20 +229,20 @@ theme_baseline_gg <- function(scale = 1) {
       margin = ggplot2::margin(r = scale * 10, l = scale * 10)
     ),
     axis.text.x = ggplot2::element_text(
-      family = "montserrat_semibold",
+      family = style$chart$font$family$label,
       size = scale * style$chart$font$size$label,
-      color = style$chart$font$color$body,
+      color = style$chart$font$color$color,
       margin = ggplot2::margin(t = scale * 2)
     ),
     axis.text.y = ggplot2::element_text(
-      family = "montserrat_semibold",
+      family = style$chart$font$family$label,
       size = scale * style$chart$font$size$label,
       hjust = 1,
-      color = style$chart$font$color$body,
+      color = style$chart$font$color$label,
       margin = ggplot2::margin(r = scale * 2)
     ),
     text = ggplot2::element_text(
-      family = "montserrat_regular",
+      family = style$chart$font$family$body,
       size = scale * style$chart$font$size$body,
       color = style$chart$font$color$body
     )
@@ -211,7 +256,7 @@ theme_baseline_gg <- function(scale = 1) {
 #' @param table An existing gt table object of class `gt_tbl`.
 #' @param ... Additional optional arguments passed to `gt::tab_options()` to override table styling.
 #'
-#' @returns Returns a styled `gt` table.
+#' @return A styled `gt` table.
 #'
 #' @import gt
 #' @importFrom magrittr %>%
@@ -307,7 +352,7 @@ theme_baseline_gt <- function(table, ...) {
         color = style$table$font$color$credit,
         font = montserrat,
         size = gt::px(style$table$font$size$credit),
-        weight = style$table$font$weight$body
+        weight = style$table$font$weight$credit
       )
     ) %>%
     # footnote
@@ -317,7 +362,7 @@ theme_baseline_gt <- function(table, ...) {
         color = style$table$font$color$credit,
         font = montserrat,
         size = gt::px(style$table$font$size$credit),
-        weight = style$table$font$weight$body
+        weight = style$table$font$weight$credit
       )
     ) %>%
     # table options

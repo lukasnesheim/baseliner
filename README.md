@@ -12,7 +12,7 @@ Installation requires the `remotes` package and a personal access token (PAT).
 4. Install via GitHub by running the following command and replacing `PAT` with your own personal access token:
 
 ```
-    remotes::install_github("lukasnesheim/baseliner", auth_token = "PAT")
+remotes::install_github("lukasnesheim/baseliner", auth_token = "PAT")
 ```
 
 ## Getting Started

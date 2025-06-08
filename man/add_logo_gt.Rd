@@ -7,7 +7,7 @@
 add_logo_gt(table, width = 1000, height = 1000, color = style$logo$color)
 }
 \arguments{
-\item{table}{A magick_image.}
+\item{table}{A \code{magick_image}.}
 
 \item{width}{Numeric. A width value in pixels.}
 

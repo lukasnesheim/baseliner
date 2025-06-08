@@ -7,7 +7,7 @@
 add_logo_gg(plot, color = style$logo$color)
 }
 \arguments{
-\item{plot}{A \code{ggplot2} plot (of class 'gg' and 'ggplot').}
+\item{plot}{A \code{ggplot2} plot object.}
 
 \item{color}{Character. A color hex defaulted to \verb{#333333}.}
 }
