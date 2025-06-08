@@ -32,6 +32,4 @@
   for (font in montserrat_fonts) {
     sysfonts::font_add(family = font, regular = systemfonts::match_font(font)$path)
   }
-
-  showtext::showtext_auto()
 }
