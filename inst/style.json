@@ -1,21 +1,21 @@
 {
     "font": {
-        "thin": "montserrat_thin",
-        "thin_italic": "montserrat_thin_italic",
-        "extra_light": "montserrat_extra_light",
-        "extra_light_italic": "montserrat_extra_light_italic",
-        "light": "montserrat_light",
-        "light_italic": "montserrat_light_italic",
-        "regular": "montserrat_regular",
-        "regular_italic": "montserrat_regular_italic",
-        "medium": "montserrat_medium",
-        "medium_italic": "montserrat_medium_italic",
-        "semibold": "montserrat_semibold",
-        "semibold_italic": "montserrat_semibold_italic",
-        "bold": "montserrat_bold",
-        "bold_italic": "montserrat_bold_italic",
-        "black": "montserrat_black",
-        "black_italic": "montserrat_black_italic"
+        "thin": "Montserrat-Thin",
+        "thin_italic": "Montserrat-ThinItalic",
+        "extra_light": "Montserrat-ExtraLight",
+        "extra_light_italic": "Montserrat-ExtraLightItalic",
+        "light": "Montserrat-Light",
+        "light_italic": "Montserrat-LightItalic",
+        "regular": "Montserrat-Regular",
+        "regular_italic": "Montserrat-Italic",
+        "medium": "Montserrat-Medium",
+        "medium_italic": "Montserrat-MediumItalic",
+        "semibold": "Montserrat-SemiBold",
+        "semibold_italic": "Montserrat-SemiBoldItalic",
+        "bold": "Montserrat-Bold",
+        "bold_italic": "Montserrat-BoldItalic",
+        "black": "Montserrat-Black",
+        "black_italic": "Montserrat-BlackItalic"
     },
     "logo": {
         "color": "#333333",
@@ -24,13 +24,7 @@
     },
     "table": {
         "font": {
-            "family": {
-                "title": "montserrat_semibold",
-                "subtitle": "montserrat_semibold",
-                "label": "montserrat_semibold",
-                "body": "montserrat_regular",
-                "credit": "montserrat_regular"
-            },
+            "family": "Montserrat",
             "size": {
                 "title": 16,
                 "subtitle": 12,
@@ -64,11 +58,11 @@
     "chart": {
         "font": {
             "family": {
-                "title": "montserrat_semibold",
-                "subtitle": "montserrat_semibold",
-                "label": "montserrat_semibold",
-                "body": "montserrat_regular",
-                "credit": "montserrat_regular"
+                "title": "Montserrat-SemiBold",
+                "subtitle": "Montserrat-SemiBold",
+                "label": "Montserrat-SemiBold",
+                "body": "Montserrat-Regular",
+                "credit": "Montserrat-Regular"
             },
             "size": {
                 "title": 16,
@@ -76,13 +70,6 @@
                 "label": 10,
                 "body": 8,
                 "credit": 6
-            },
-            "weight": {
-                "title": 600,
-                "subtitle": 600,
-                "label": 600,
-                "body": 400,
-                "credit": 400
             },
             "color": {
                 "title": "#333333",

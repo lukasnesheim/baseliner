@@ -12,12 +12,12 @@ Imports:
     cowplot,
     ggplot2,
     gt,
-    here,
     jsonlite,
     magick,
     magrittr,
     scales,
     showtext,
-    sysfonts
+    sysfonts,
+    systemfonts
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
