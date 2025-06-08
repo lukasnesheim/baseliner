@@ -105,62 +105,6 @@ get_color <- function() {
   jsonlite::read_json(color_path)
 }
 
-#' Register Montserrat
-#'
-#' Registers the Montserrat font for chart and table themes.
-#'
-#' @importFrom here here
-#' @importFrom sysfonts font_add font_families
-register_montserrat <- function() {
-  # path to the montserrat font files
-  path <- here::here("inst", "font", "montserrat")
-
-  # pull loaded fonts so we don't reload montserrat
-  loaded <- sysfonts::font_families()
-
-  # montserrat font faces
-  montserrat <- c(
-    "montserrat_thin",
-    "montserrat_thin_italic",
-    "montserrat_extra_light",
-    "montserrat_extra_light_italic",
-    "montserrat_light",
-    "montserrat_light_italic",
-    "montserrat_regular",
-    "montserrat_regular_italic",
-    "montserrat_medium",
-    "montserrat_medium_italic",
-    "montserrat_semibold",
-    "montserrat_semibold_italic",
-    "montserrat_bold",
-    "montserrat_bold_italic",
-    "montserrat_black",
-    "montserrat_black_italic"
-  )
-
-  # check if montserrat is already loaded
-  if (!all(montserrat %in% loaded)) {
-    sysfonts::font_add("montserrat_thin", file.path(path, "Montserrat-Thin.ttf"))
-    sysfonts::font_add("montserrat_thin_italic", file.path(path, "Montserrat-ThinItalic.ttf"))
-    sysfonts::font_add("montserrat_extra_light", file.path(path, "Montserrat-ExtraLight.ttf"))
-    sysfonts::font_add("montserrat_extra_light_italic", file.path(path, "Montserrat-ExtraLightItalic.ttf"))
-    sysfonts::font_add("montserrat_light", file.path(path, "Montserrat-Light.ttf"))
-    sysfonts::font_add("montserrat_light_italic", file.path(path, "Montserrat-LightItalic.ttf"))
-    sysfonts::font_add("montserrat_regular", file.path(path, "Montserrat-Regular.ttf"))
-    sysfonts::font_add("montserrat_regular_italic", file.path(path, "Montserrat-Italic.ttf"))
-    sysfonts::font_add("montserrat_medium", file.path(path, "Montserrat-Medium.ttf"))
-    sysfonts::font_add("montserrat_medium_italic", file.path(path, "Montserrat-MediumItalic.ttf"))
-    sysfonts::font_add("montserrat_semibold", file.path(path, "Montserrat-SemiBold.ttf"))
-    sysfonts::font_add("montserrat_semibold_italic", file.path(path, "Montserrat-SemiBoldItalic.ttf"))
-    sysfonts::font_add("montserrat_bold", file.path(path, "Montserrat-Bold.ttf"))
-    sysfonts::font_add("montserrat_bold_italic", file.path(path, "Montserrat-BoldItalic.ttf"))
-    sysfonts::font_add("montserrat_black", file.path(path, "Montserrat-Black.ttf"))
-    sysfonts::font_add("montserrat_black_italic", file.path(path, "Montserrat-BlackItalic.ttf"))
-  }
-
-  invisible(TRUE)
-}
-
 #' Baseline Plot Theme
 #'
 #' Apply the Baseline theme to a `ggplot2` plot.
@@ -174,7 +118,6 @@ register_montserrat <- function() {
 #'
 #' @export
 theme_baseline_gg <- function(scale = 1) {
-
   stopifnot(`'scale' must be a positive number.` = is.numeric(scale) && scale > 0)
 
   ggplot2::theme_void() + ggplot2::theme(
@@ -263,10 +206,8 @@ theme_baseline_gg <- function(scale = 1) {
 #'
 #' @export
 theme_baseline_gt <- function(table, ...) {
-
   stopifnot(`'table' must be a 'gt_tbl'.` = "gt_tbl" %in% class(table))
 
-  montserrat <- gt::google_font("Montserrat")
   table_id <- table[["_options"]]$value[table[["_options"]]$parameter == "table_id"][[1]]
 
   if (is.na(table_id)) {
@@ -280,7 +221,7 @@ theme_baseline_gt <- function(table, ...) {
       locations = gt::cells_title(groups = "title"),
       style = gt::cell_text(
         color = style$table$font$color$title,
-        font = montserrat,
+        font = style$table$font$family,
         size = gt::px(style$table$font$size$title),
         weight = style$table$font$weight$title
       )
@@ -290,7 +231,7 @@ theme_baseline_gt <- function(table, ...) {
       locations = gt::cells_title(groups = "subtitle"),
       style = gt::cell_text(
         color = style$table$font$color$subtitle,
-        font = montserrat,
+        font = style$table$font$family,
         size = gt::px(style$table$font$size$subtitle),
         weight = style$table$font$weight$subtitle
       )
@@ -300,7 +241,7 @@ theme_baseline_gt <- function(table, ...) {
       locations = gt::cells_column_spanners(),
       style = gt::cell_text(
         color = style$table$font$color$body,
-        font = montserrat,
+        font = style$table$font$family,
         size = gt::px(style$table$font$size$label),
         weight = style$table$font$weight$label
       )
@@ -311,7 +252,7 @@ theme_baseline_gt <- function(table, ...) {
       style = list(
         gt::cell_text(
           color = style$table$font$color$body,
-          font = montserrat,
+          font = style$table$font$family,
           size = gt::px(style$table$font$size$body),
           weight = style$table$font$weight$label
         ),
@@ -326,7 +267,7 @@ theme_baseline_gt <- function(table, ...) {
       style = list(
         gt::cell_text(
           color = style$table$font$color$body,
-          font = montserrat,
+          font = style$table$font$family,
           size = gt::px(style$table$font$size$body),
           weight = style$table$font$weight$label
         ),
@@ -340,7 +281,7 @@ theme_baseline_gt <- function(table, ...) {
       locations = gt::cells_body(),
       style = gt::cell_text(
         color = style$table$font$color$body,
-        font = montserrat,
+        font = style$table$font$family,
         size = gt::px(style$table$font$size$body),
         weight = style$table$font$weight$body
       )
@@ -350,7 +291,7 @@ theme_baseline_gt <- function(table, ...) {
       locations = gt::cells_source_notes(),
       style = gt::cell_text(
         color = style$table$font$color$credit,
-        font = montserrat,
+        font = style$table$font$family,
         size = gt::px(style$table$font$size$credit),
         weight = style$table$font$weight$credit
       )
@@ -360,7 +301,7 @@ theme_baseline_gt <- function(table, ...) {
       locations = gt::cells_footnotes(),
       style = gt::cell_text(
         color = style$table$font$color$credit,
-        font = montserrat,
+        font = style$table$font$family,
         size = gt::px(style$table$font$size$credit),
         weight = style$table$font$weight$credit
       )
