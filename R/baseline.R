@@ -141,7 +141,7 @@ ggsave_with_logo <- function(plot, output, width = 6, height = 6, dpi = 600) {
     height = ggplot2::unit(1, "npc")
   )
 
-  logo_image <- magick::image_read("inst/logo.png")
+  logo_image <- magick::image_read(system.file("logo.png", package = "baseliner"))
   logo_grob <- grid::rasterGrob(
     logo_image,
     x = ggplot2::unit(0, "npc"),
