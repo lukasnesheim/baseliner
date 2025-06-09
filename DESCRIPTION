@@ -15,8 +15,8 @@ Imports:
     jsonlite,
     magick,
     magrittr,
+    ragg,
     scales,
-    showtext,
     sysfonts,
     systemfonts
 Roxygen: list(markdown = TRUE)

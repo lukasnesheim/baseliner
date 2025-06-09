@@ -105,6 +105,66 @@ get_color <- function() {
   jsonlite::read_json(color_path)
 }
 
+#' Save `ggplot2` Plot with Logo
+#'
+#' Adds the Baseline logo to a `ggplot2` plot and saves the plot.
+#'
+#' @param plot A `ggplot2` plot object.
+#' @param output A file path where the output image will be saved.
+#' @param width Numeric. The width of the output image in **inches** defaulted to 6.
+#' @param height Numeric. The height of the output image in **inches** defaulted to 6.
+#' @param dpi Numeric. The resolution of the output image in **dots per inch (DPI)** defaulted to 6.
+#'
+#' @import ggplot2 grid
+#' @importFrom grDevices dev.off
+#' @importFrom magick image_read
+#' @importFrom ragg agg_png
+#'
+#' @export
+ggsave_with_logo <- function(plot, output, width = 6, height = 6, dpi = 600) {
+  temp <- tempfile(fileext = ".png")
+
+  ggplot2::ggsave(
+    filename = temp,
+    plot = plot,
+    width = width,
+    height = height,
+    dpi = dpi,
+    units = "in",
+    device = ragg::agg_png
+  )
+
+  plot_image <- magick::image_read(temp)
+  plot_grob <- grid::rasterGrob(
+    plot_image,
+    width = ggplot2::unit(1, "npc"),
+    height = ggplot2::unit(1, "npc")
+  )
+
+  logo_image <- magick::image_read("inst/logo.png")
+  logo_grob <- grid::rasterGrob(
+    logo_image,
+    x = ggplot2::unit(0, "npc"),
+    y = ggplot2::unit(1, "npc"),
+    just = c("left", "top"),
+    width = ggplot2::unit(1.5, "in")
+  )
+
+  ragg::agg_png(
+    output,
+    width = width,
+    height = height,
+    units = "in",
+    res = dpi
+  )
+
+  grid::grid.newpage()
+  grid::grid.draw(plot_grob)
+  grid::grid.draw(logo_grob)
+
+  grDevices::dev.off()
+}
+
 #' Baseline Plot Theme
 #'
 #' Apply the Baseline theme to a `ggplot2` plot.
