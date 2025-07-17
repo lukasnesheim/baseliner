@@ -12,6 +12,7 @@ Imports:
     cowplot,
     ggplot2,
     gt,
+    gtUtils,
     jsonlite,
     magick,
     magrittr,
