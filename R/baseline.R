@@ -165,6 +165,64 @@ ggsave_with_logo <- function(plot, output, width = 6, height = 6, dpi = 600) {
   grDevices::dev.off()
 }
 
+#' Save `gt` Table with Logo
+#'
+#' Adds the Baseline logo to a `gt` table and saves the table.
+#'
+#' @param table A `gt` table object.
+#' @param output A file path where the output image will be saved.
+#' @param width Numeric. The width of the output image in **inches** defaulted to 6.
+#' @param height Numeric. The height of the output image in **inches** defaulted to 6.
+#' @param dpi Numeric. The resolution of the output image in **dots per inch (DPI)** defaulted to 6.
+#'
+#' @import gt gtUtils grid
+#' @importFrom grDevices dev.off
+#' @importFrom magick image_read
+#' @importFrom ragg agg_png
+#'
+#' @export
+gtsave_with_logo <- function(table, output, width = 6, height = 6, dpi = 600) {
+  temp <- tempfile(fileext = ".png")
+
+  gtUtils::gt_save_crop(
+    data = table,
+    file = temp,
+    bg = color$background,
+    zoom = dpi / 96
+  )
+
+  table_image <- magick::image_read(temp)
+  image_info <- magick::image_info(table_image)
+  table_grob <- grid::rasterGrob(
+    table_image,
+    width = grid::unit(1, "npc"),
+    height = grid::unit(1, "npc")
+  )
+
+  logo_image <- magick::image_read(system.file("extdata", "logo.png", package = "baseliner"))
+  logo_grob <- grid::rasterGrob(
+    logo_image,
+    x = grid::unit(0, "npc"),
+    y = grid::unit(1, "npc"),
+    just = c("left", "top"),
+    width = grid::unit(0.25, "npc")
+  )
+
+  ragg::agg_png(
+    output,
+    width = image_info$width / dpi,
+    height = image_info$height / dpi,
+    units = "in",
+    res = dpi
+  )
+
+  grid::grid.newpage()
+  grid::grid.draw(table_grob)
+  grid::grid.draw(logo_grob)
+
+  grDevices::dev.off()
+}
+
 #' Baseline Plot Theme
 #'
 #' Apply the Baseline theme to a `ggplot2` plot.
