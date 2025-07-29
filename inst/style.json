@@ -33,7 +33,7 @@
             },
             "color": {
                 "title": "#333333",
-                "subtitle": "#595959",
+                "subtitle": "#B3B3B3",
                 "label": "#333333",
                 "body": "#333333",
                 "credit": "#595959"
@@ -41,7 +41,7 @@
             "family": "Montserrat",
             "size": {
                 "title": 16,
-                "subtitle": 12,
+                "subtitle": 10,
                 "label": 10,
                 "body": 8,
                 "credit": 6
