@@ -5,76 +5,18 @@ color <- jsonlite::read_json("inst/color.json")
 # define the pipe from magrittr
 "%>%" <- magrittr::"%>%"
 
-#' Add `ggplot2` Logo
+#' Get Baseline Color
 #'
-#' Adds the Baseline logo to a `ggplot2` plot.
+#' Reads and returns the color configuration JSON as a list.
 #'
-#' @param plot A `ggplot2` plot object.
-#' @param color Character. A color hex defaulted to `#333333`.
+#' @return A named, nested list of color settings.
 #'
-#' @return A `ggplot2` plot object with the logo added.
-#'
-#' @importFrom cowplot ggdraw draw_image
-#' @importFrom magick image_blank
+#' @importFrom jsonlite read_json
 #'
 #' @export
-add_logo_gg <- function(plot, color = style$logo$color) {
-  cowplot::ggdraw(plot) +
-    cowplot::draw_image(
-      magick::image_blank(
-        width = 1000,
-        height = 100,
-        color = color
-      ),
-      x = 0,
-      y = 1,
-      hjust = 0,
-      vjust = 1,
-      halign = 0,
-      valign = 1,
-      width = 0.25,
-      height = 0.02
-    )
-}
-
-#' Add `gt` Logo
-#'
-#' Adds the Baseline logo to a `gt` table.
-#'
-#' @param table A `magick_image`.
-#' @param width Numeric. A width value in pixels.
-#' @param height Numeric. A height value in pixels.
-#' @param color Character. A color hex defaulted to `#333333`.
-#'
-#' @importFrom magick image_blank image_composite
-#'
-#' @export
-add_logo_gt <- function(table, width = 1000, height = 1000, color = style$logo$color) {
-  magick::image_composite(
-    table,
-    magick::image_blank(
-      width = width * 0.25,
-      height = height * 0.02,
-      color = color
-    ),
-    gravity = "northwest"
-  )
-}
-
-#' Baseline Plot
-#'
-#' Applies the Baseline theme and adds the Baseline logo to a `ggplot2` plot.
-#' This is a convenience wrapper which applies the theme using \code{\link{theme_baseline_gg}}
-#' to a plot and then adds the logo to a plot using \code{\link{add_logo_gg}}.
-#' Use the individual functions for more manual control and styling overrides.
-#'
-#' @param plot A ggplot2 plot object.
-#'
-#' @return A ggplot2 plot object with the Baseline theme and logo.
-#'
-#' @export
-baseline_plot <- function(plot) {
-  add_logo_gg(plot + theme_baseline_gg())
+get_color <- function() {
+  color_path <- system.file("color.json", package = "baseliner")
+  jsonlite::read_json(color_path)
 }
 
 #' Get Baseline Style
@@ -89,20 +31,6 @@ baseline_plot <- function(plot) {
 get_style <- function() {
   style_path <- system.file("style.json", package = "baseliner")
   jsonlite::read_json(style_path)
-}
-
-#' Get Baseline Color
-#'
-#' Reads and returns the color configuration JSON as a list.
-#'
-#' @return A named, nested list of color settings.
-#'
-#' @importFrom jsonlite read_json
-#'
-#' @export
-get_color <- function() {
-  color_path <- system.file("color.json", package = "baseliner")
-  jsonlite::read_json(color_path)
 }
 
 #' Save `ggplot2` Plot with Logo
@@ -290,16 +218,16 @@ theme_baseline_gg <- function(scale = 1) {
       margin = ggplot2::margin(r = scale * 10, l = scale * 10)
     ),
     axis.text.x = ggplot2::element_text(
-      family = style$chart$font$family$label,
-      size = scale * style$chart$font$size$label,
-      color = style$chart$font$color$color,
+      family = style$chart$font$family$tick,
+      size = scale * style$chart$font$size$tick,
+      color = style$chart$font$color$tick,
       margin = ggplot2::margin(t = scale * 2)
     ),
     axis.text.y = ggplot2::element_text(
-      family = style$chart$font$family$label,
-      size = scale * style$chart$font$size$label,
+      family = style$chart$font$family$tick,
+      size = scale * style$chart$font$size$tick,
       hjust = 1,
-      color = style$chart$font$color$label,
+      color = style$chart$font$color$tick,
       margin = ggplot2::margin(r = scale * 2)
     ),
     text = ggplot2::element_text(

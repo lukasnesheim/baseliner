@@ -24,6 +24,20 @@
     },
     "table": {
         "font": {
+            "alpha": {
+                "title": 1.0,
+                "subtitle": 1.0,
+                "label": 1.0,
+                "body": 1.0,
+                "credit": 1.0 
+            },
+            "color": {
+                "title": "#333333",
+                "subtitle": "#595959",
+                "label": "#333333",
+                "body": "#333333",
+                "credit": "#595959"
+            },
             "family": "Montserrat",
             "size": {
                 "title": 16,
@@ -38,52 +52,42 @@
                 "label": 600,
                 "body": 400,
                 "credit": 400
-            },
-            "color": {
-                "title": "#333333",
-                "subtitle": "#595959",
-                "label": "#333333",
-                "body": "#333333",
-                "credit": "#595959"
-            },
-            "alpha": {
-                "title": 1.0,
-                "subtitle": 1.0,
-                "label": 1.0,
-                "body": 1.0,
-                "credit": 1.0 
             }
         }
     },
     "chart": {
         "font": {
+            "alpha": {
+                "title": 1.0,
+                "subtitle": 1.0,
+                "label": 1.0,
+                "tick": 1.0,
+                "body": 1.0,
+                "credit": 1.0 
+            },
+            "color": {
+                "title": "#333333",
+                "subtitle": "#B3B3B3",
+                "label": "#333333",
+                "tick": "#333333",
+                "body": "#333333",
+                "credit": "#595959"
+            },
             "family": {
                 "title": "Montserrat-SemiBold",
                 "subtitle": "Montserrat-SemiBold",
                 "label": "Montserrat-SemiBold",
+                "tick": "Montserrat-SemiBold",
                 "body": "Montserrat-Regular",
                 "credit": "Montserrat-Regular"
             },
             "size": {
                 "title": 16,
-                "subtitle": 12,
+                "subtitle": 10,
                 "label": 10,
+                "tick": 8,
                 "body": 8,
                 "credit": 6
-            },
-            "color": {
-                "title": "#333333",
-                "subtitle": "#595959",
-                "label": "#333333",
-                "body": "#333333",
-                "credit": "#595959"
-            },
-            "alpha": {
-                "title": 1.0,
-                "subtitle": 1.0,
-                "label": 1.0,
-                "body": 1.0,
-                "credit": 1.0 
             }
         },
         "grid": {
