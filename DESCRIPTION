@@ -1,7 +1,7 @@
 Package: baseliner
 Type: Package
 Title: Baseline Theme
-Version: 0.1.0
+Version: 1.1.0
 Authors@R:
     person("Lukas", "Nesheim", email = "lukenesh@me.com", role = c("aut", "cre"))
 Description: A theme and style guide to make data beautiful for the Baseline.
@@ -11,11 +11,8 @@ LazyData: true
 Imports:
     ggplot2,
     gt,
-    gtUtils,
     jsonlite,
-    magick,
     magrittr,
-    ragg,
     scales,
     sysfonts,
     systemfonts
