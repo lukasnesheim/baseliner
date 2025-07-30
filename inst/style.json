@@ -33,7 +33,7 @@
             },
             "color": {
                 "title": "#333333",
-                "subtitle": "#B3B3B3",
+                "subtitle": "#595959",
                 "label": "#333333",
                 "body": "#333333",
                 "credit": "#595959"
@@ -48,7 +48,7 @@
             },
             "weight": {
                 "title": 600,
-                "subtitle": 600,
+                "subtitle": 400,
                 "label": 600,
                 "body": 400,
                 "credit": 400
@@ -67,7 +67,7 @@
             },
             "color": {
                 "title": "#333333",
-                "subtitle": "#B3B3B3",
+                "subtitle": "#595959",
                 "label": "#333333",
                 "tick": "#333333",
                 "body": "#333333",
@@ -75,7 +75,7 @@
             },
             "family": {
                 "title": "Montserrat-SemiBold",
-                "subtitle": "Montserrat-SemiBold",
+                "subtitle": "Montserrat-Regular",
                 "label": "Montserrat-SemiBold",
                 "tick": "Montserrat-SemiBold",
                 "body": "Montserrat-Regular",
@@ -85,7 +85,7 @@
                 "title": 16,
                 "subtitle": 10,
                 "label": 10,
-                "tick": 8,
+                "tick": 6,
                 "body": 8,
                 "credit": 6
             }
